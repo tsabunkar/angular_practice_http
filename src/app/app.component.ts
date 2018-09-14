@@ -45,6 +45,19 @@ export class AppComponent {
             )
     }
 
+    onClickGet() {
+        this.serverService.getServers()
+            .subscribe((responseData: Response) => {
+                const data = JSON.stringify(responseData) //unwrapping the response
+                console.log(responseData);
+                console.log(data);
+            },
+                (err) => {
+                    console.log(err);
+                }
+            )
+    }
+
 
 
 }

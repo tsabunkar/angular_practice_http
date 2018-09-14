@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 //*imports from rxjs
 import { Observable, throwError, of } from "rxjs";
@@ -15,16 +15,42 @@ export class ServerService {
     constructor(private http: HttpClient) { }
     url: string = 'https://ng-practice-http.firebaseio.com/data.json';
 
-    //POST (Sending Array of items)
+    //POST (Sending Array of items from client to server)
     storeServers(servers: any[]) {
-        return this.http.post<any>(this.url, servers).pipe(
+
+        const httpHeaderOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                // 'Authorization': 'my-auth-token'
+            })
+        };
+
+        return this.http.post<any>(this.url, servers, httpHeaderOptions).pipe(
             catchError(err => {
                 this.handlerError(err);
                 throw err;
             })
         );
-        //post() -> method return type is - Observable<Resopnse>
+        //post() , pipe() -> method return type is - Observable<Resopnse>
         //data.json -> at end of url tells firbase that it this post request is JSON format
+    }
+
+
+    //GET ALL (Fetching data from backend to client)
+    getServers() {
+        return this.http.get<any>(this.url)
+          /*   .pipe(
+
+                map((resp: Response) => {
+                    console.log(resp);
+                }),
+                catchError(err => {
+                    this.handlerError(err);
+                    throw err;
+                })
+            ) */
+
+
     }
 
 
