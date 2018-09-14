@@ -48,7 +48,7 @@ export class AppComponent {
     onClickGet() {
         this.serverService.getServers()
             .subscribe((responseData: Response) => {
-                const data = JSON.stringify(responseData) //unwrapping the response
+                const data = JSON.stringify(responseData) //unwrapping the response (datatype) to json 
                 console.log(responseData);
                 console.log(data);
             },
@@ -59,5 +59,15 @@ export class AppComponent {
     }
 
 
+    onClickEdit(){
+      this.serverService.editServers(this.servers)
+      .subscribe((responseData) => {
+          console.log(responseData);
+      },
+          (err) => {
+              console.log(err);
+          }
+      )
+    }
 
 }

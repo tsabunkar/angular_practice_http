@@ -6,6 +6,7 @@
       <hr>
       <button class="btn btn-primary" (click)="onClickSave()">POST(Save Server)</button>
       <button class="btn btn-warning" (click)="onClickGet()">GETALL(Save Server)</button>
+      <button class="btn btn-secondary" (click)="onClickEdit()">PUT(Save Server)</button>
       <hr>
       <ul class="list-group" *ngFor="let server of servers">
         <li class="list-group-item">{{ server.name }} (ID: {{ server.id }})</li>

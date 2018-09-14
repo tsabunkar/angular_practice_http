@@ -53,6 +53,22 @@ export class ServerService {
 
     }
 
+    editServers(servers: any[]){
+        const httpHeaderOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                // 'Authorization': 'my-auth-token'
+            })
+        };
+
+        return this.http.put<any>(this.url, servers, httpHeaderOptions).pipe(
+            catchError(err => {
+                this.handlerError(err);
+                throw err;
+            })
+        );
+    }
+
 
     handlerError(err: any) {
         console.log('error hass occured :', err);
