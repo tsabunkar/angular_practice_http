@@ -44,8 +44,29 @@ project name - ng-practice-http
 develop > Database
 Create database > Test database
 (after db is created)
-Rules > (check u can read and write)
+Rules > (check u can read and write -> true)
+{
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+} > click on Publish
 Go to Data tab > Database > RealtimeDatabase (click)
 then u will be get the db url - https://ng-practice-http.firebaseio.com/
 
 ------------------------------------------------------------------------------------------------------------
+Dont use Http (from HttpModule ) since it has been depricated in angular, instead use upgraded version i.e HttpClient (from HttpClientModule) [from Angular 4+]
+
+HttpClient provides following features compared to Http-
+
+*)Interceptors allow middleware logic to be inserted into the pipeline
+*)Immutable request/response objects
+*)Progress events for both request upload and response download
+*)Typed, synchronous response body access, including support for JSON body types
+*)JSON is an assumed default and no longer needs to be explicitly parsed
+*)Post-request verification & flush based testing framework
+
+
+------------------------------------------------------------------------------------------------------------
+
